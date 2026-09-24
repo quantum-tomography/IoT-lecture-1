@@ -507,23 +507,48 @@ function resetState(){
   render();
 }
 
+
 function wireToggle(btnId, panelId, iconId, key){
-  const btn = document.getElementById(btnId);
-  const panel = document.getElementById(panelId);
-  const icon = document.getElementById(iconId);
-  if(!btn || !panel || !icon) return;
 
-  const on = !!state.expanded[key];
-  panel.classList.toggle("hidden", !on);
-  icon.textContent = on ? "▾" : "▸";
+  // Register the reveal buttons for Slide 3
+  const slide3Toggles = [
+    ["toggleDigitalMeaning", "panelDigitalMeaning", "iconDigitalMeaning", "digitalMeaning"],
+    ["toggleDigitalExamples", "panelDigitalExamples", "iconDigitalExamples", "digitalExamples"],
+    ["toggleSmartHome", "panelSmartHome", "iconSmartHome", "smartHome"]
+  ];
 
-  btn.onclick = () => {
-    const now = !state.expanded[key];
-    state.expanded[key] = now;
-    panel.classList.toggle("hidden", !now);
-    icon.textContent = now ? "▾" : "▸";
-    saveState();
-  };
+  function connectToggle(bId, pId, iId, stateKey){
+
+    const btn = document.getElementById(bId);
+    const panel = document.getElementById(pId);
+    const icon = document.getElementById(iId);
+
+    if(!btn || !panel || !icon) return;
+
+    const on = !!state.expanded[stateKey];
+
+    panel.classList.toggle("hidden", !on);
+    icon.textContent = on ? "▾" : "▸";
+
+    btn.onclick = () => {
+
+      const now = !state.expanded[stateKey];
+
+      state.expanded[stateKey] = now;
+
+      panel.classList.toggle("hidden", !now);
+      icon.textContent = now ? "▾" : "▸";
+
+      saveState();
+    };
+  }
+
+  // Connect the original reveal button
+  connectToggle(btnId, panelId, iconId, key);
+
+  // Connect all three reveal buttons on Slide 3
+  slide3Toggles.forEach(args => connectToggle(...args));
+
 }
 
 function renderQuiz(sl){
