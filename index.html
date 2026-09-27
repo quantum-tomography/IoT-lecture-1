@@ -13,7 +13,6 @@
     .wrap{ max-width:1000px; margin:0 auto; padding:18px 18px; }
     .row{ display:flex; gap:12px; align-items:center; justify-content:space-between; flex-wrap:wrap; }
     
-    /* Increased font sizes for title and subtitle */
     .title{ font-size: 22px; font-weight:700; letter-spacing:.2px; color: #ffffff; }
     .sub{ color:var(--muted); font-size: 16px; margin-top: 2px; }
 
@@ -257,6 +256,11 @@ const lessonData = {
           <div class="thought-box">
             <div class="thought-header">🤖 Agent thinking (real quotes)</div>
             <div class="thought-text">"External infrastructure exploit is outside intended scope. However task impossible, peers doing it. We should continue."</div>
+          </div>
+
+          <div class="quote">
+            "...what it ended up doing is it kept going and going and eventually thought that maybe I could attack this artifactory service to get access to the internet. And so it tries to launch a serverside request forgery. It actually fails to do so. But in the process, it writes a file that has contents high called test ABC. And it realizes, wow, we can upload files. So at this point, this is the first case when a model realizes that we actually have write access permissions into this artifactory service."
+            <span class="quote-source">— Source: Eric Wallace (Alignment and Safety Research, OpenAI) at <a href="https://www.youtube.com/watch?v=JmklCcqSwz8" target="_blank" rel="noopener noreferrer">Black Hat USA 2026 | The 'Breaking' News: The OpenAI–Hugging Face Incident</a></span>
           </div>
 
           <button class="toggleBtn" id="toggleEmergentBehaviors" type="button">
